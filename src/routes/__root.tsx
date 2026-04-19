@@ -29,11 +29,17 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Sagesses du Bénin" },
+      {
+        name: "description",
+        content: "Sagesses du Bénin — explorez la matrice du Fâ et le mur des consultations.",
+      },
+      { name: "author", content: "YonyFâ" },
+      { property: "og:title", content: "Sagesses du Bénin" },
+      {
+        property: "og:description",
+        content: "Sagesses du Bénin — explorez la matrice du Fâ et le mur des consultations.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
