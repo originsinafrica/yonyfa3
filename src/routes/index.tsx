@@ -50,15 +50,14 @@ function Index() {
           className="max-w-5xl mx-auto"
         >
           <div className="text-center mb-8">
-            <p className="text-xs uppercase tracking-[0.3em] text-benin-green font-semibold mb-3">
-              YonyFâ — Sagesses
-            </p>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl mb-4 text-foreground">
               Sagesses du Bénin
             </h1>
-            <p className="text-sm md:text-base max-w-xl mx-auto leading-relaxed text-muted-foreground">
-              {SUBTITLES[tab]}
-            </p>
+            {tab === "mur" && (
+              <p className="text-sm md:text-base max-w-xl mx-auto leading-relaxed text-muted-foreground">
+                {SUBTITLES[tab]}
+              </p>
+            )}
           </div>
 
           {/* Tabs */}

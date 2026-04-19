@@ -184,8 +184,8 @@ const SandMatrix = () => {
               className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
               style={{
                 background: "hsl(40, 20%, 96%)",
-                color: "hsl(358, 75%, 52%)",
-                border: "1px solid hsl(358, 75%, 52% / 0.3)",
+                color: "hsl(25, 95%, 55%)",
+                border: "1px solid hsl(25, 95%, 55% / 0.3)",
               }}
             >
               <X size={18} />
@@ -402,17 +402,27 @@ const SandMatrix = () => {
               <AudioRecorder />
             </motion.div>
 
-            {/* Restart */}
-            <div className="mt-8 flex justify-center">
+            {/* Restart + Transmit */}
+            <div className="mt-8 flex justify-center gap-3 flex-wrap">
               <button
                 onClick={restart}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-105"
+                style={{
+                  background: "hsl(40, 20%, 92%)",
+                  color: "hsl(30, 8%, 12%)",
+                }}
+              >
+                <RotateCcw size={14} /> Nouveau cas
+              </button>
+              <button
+                onClick={() => {}}
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-105"
                 style={{
                   background: "hsl(145, 55%, 38%)",
                   color: "hsl(0, 0%, 100%)",
                 }}
               >
-                <RotateCcw size={14} /> Nouveau cas
+                Transmettre ma sagesse
               </button>
             </div>
           </motion.div>
