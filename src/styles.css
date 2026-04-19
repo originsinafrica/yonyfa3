@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -63,6 +63,21 @@
 
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "DM Serif Display", ui-serif, Georgia, serif;
+  --font-headline: "Noto Serif", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Editorial surfaces (Living Editorial design system) */
+  --color-editorial-surface: #f6f6f6;
+  --color-editorial-surface-low: #f0f1f1;
+  --color-editorial-surface-lowest: #ffffff;
+  --color-editorial-on-surface: #2d2f2f;
+  --color-editorial-on-surface-variant: #5a5c5c;
+  --color-editorial-primary: #00693e;
+  --color-editorial-primary-dim: #005c36;
+  --color-editorial-secondary-fixed: #fbd115;
+  --color-benin-flag-green: #008751;
+  --color-benin-flag-yellow: #fcd116;
+  --color-benin-flag-red: #e8112d;
 }
 
 :root {
@@ -154,4 +169,33 @@
   .font-display {
     font-family: "DM Serif Display", ui-serif, Georgia, serif;
   }
+
+  .font-headline {
+    font-family: "Noto Serif", ui-serif, Georgia, serif;
+  }
+
+  .font-body {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-label {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+/* Editorial pattern background (subtle Benin-inspired diamonds) */
+.pattern-border {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l20 20-20 20L0 20z' fill='%2300693e' fill-opacity='0.05'/%3E%3Cpath d='M20 10l10 10-10 10-10-10z' fill='%23fbd115' fill-opacity='0.05'/%3E%3Cpath d='M20 15l5 5-5 5-5-5z' fill='%23ba001f' fill-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.glass-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes waveform {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
 }
