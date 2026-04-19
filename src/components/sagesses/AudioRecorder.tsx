@@ -105,23 +105,29 @@ const AudioRecorder = ({ onSaved }: Props) => {
 
   return (
     <div
-      className="rounded-2xl border p-5"
-      style={{ borderColor: "hsl(358, 75%, 52%)", background: "hsl(0, 0%, 100%)" }}
+      className="font-body rounded-xl p-6"
+      style={{
+        background: "#ffffff",
+        boxShadow: "inset 0 0 0 1px rgba(232, 17, 45, 0.35)",
+      }}
     >
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-start justify-between mb-3 gap-3">
         <div>
-          <p className="text-xs uppercase tracking-widest font-semibold" style={{ color: "hsl(358, 75%, 52%)" }}>
+          <p
+            className="font-label text-xs uppercase tracking-[0.2em] font-bold"
+            style={{ color: "#e8112d" }}
+          >
             Enregistre ta réponse
           </p>
-          <p className="text-xs mt-0.5" style={{ color: "hsl(30, 8%, 45%)" }}>
+          <p className="text-sm mt-1" style={{ color: "#5a5c5c" }}>
             1 minute maximum — pose ta voix sur ce cas.
           </p>
         </div>
         <span
-          className="text-sm font-mono tabular-nums px-2 py-1 rounded-md"
+          className="font-mono tabular-nums text-xs px-2.5 py-1 rounded-md whitespace-nowrap"
           style={{
-            background: recording ? "hsl(358, 75%, 52%)" : "hsl(40, 20%, 96%)",
-            color: recording ? "hsl(0, 0%, 100%)" : "hsl(30, 8%, 35%)",
+            background: recording ? "#e8112d" : "#f0f1f1",
+            color: recording ? "#ffffff" : "#2d2f2f",
           }}
         >
           {formatTime(elapsed)} / 1:00
@@ -129,10 +135,13 @@ const AudioRecorder = ({ onSaved }: Props) => {
       </div>
 
       {/* Progress bar */}
-      <div className="h-1.5 rounded-full overflow-hidden mb-4" style={{ background: "hsl(40, 20%, 92%)" }}>
+      <div
+        className="h-1 rounded-full overflow-hidden mb-5"
+        style={{ background: "#f0f1f1" }}
+      >
         <motion.div
           className="h-full"
-          style={{ background: "hsl(358, 75%, 52%)" }}
+          style={{ background: "#e8112d" }}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.3 }}
         />
@@ -142,8 +151,8 @@ const AudioRecorder = ({ onSaved }: Props) => {
         {!audioUrl && !recording && (
           <button
             onClick={startRecording}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-            style={{ background: "hsl(0, 0%, 0%)", color: "hsl(0, 0%, 100%)" }}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-bold transition-all hover:scale-[1.03] active:scale-[0.98]"
+            style={{ background: "#1a1a1a", color: "#ffffff" }}
           >
             <Mic size={16} /> Enregistrer mon interprétation
           </button>
@@ -151,8 +160,8 @@ const AudioRecorder = ({ onSaved }: Props) => {
         {recording && (
           <button
             onClick={stopRecording}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
-            style={{ background: "hsl(30, 30%, 12%)", color: "hsl(0, 0%, 100%)" }}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-bold transition-all"
+            style={{ background: "#2d2f2f", color: "#ffffff" }}
           >
             <Square size={14} /> Arrêter
           </button>
@@ -161,19 +170,20 @@ const AudioRecorder = ({ onSaved }: Props) => {
           <>
             <button
               onClick={togglePlay}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
-              style={{ background: "hsl(145, 55%, 38%)", color: "hsl(0, 0%, 100%)" }}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-bold text-white transition-all hover:scale-[1.03]"
+              style={{
+                background: "linear-gradient(90deg, #00693e 0%, #005c36 100%)",
+              }}
             >
               {playing ? <Pause size={16} /> : <Play size={16} />}
               {playing ? "Pause" : "Écouter"}
             </button>
             <button
               onClick={resetRecording}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all border"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-bold transition-all"
               style={{
-                borderColor: "hsl(358, 75%, 52%)",
-                color: "hsl(358, 75%, 52%)",
-                background: "hsl(0, 0%, 100%)",
+                background: "#f0f1f1",
+                color: "#e8112d",
               }}
             >
               <Trash2 size={14} /> Recommencer
@@ -189,7 +199,7 @@ const AudioRecorder = ({ onSaved }: Props) => {
       </div>
 
       {error && (
-        <p className="mt-3 text-xs" style={{ color: "hsl(358, 75%, 52%)" }}>
+        <p className="mt-3 text-xs" style={{ color: "#e8112d" }}>
           {error}
         </p>
       )}
