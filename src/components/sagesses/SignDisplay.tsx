@@ -54,29 +54,44 @@ const SignDisplay = ({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="rounded-xl border border-border bg-card p-4 sm:p-5"
+      className="font-body rounded-xl p-6"
+      style={{
+        background: "#ffffff",
+        boxShadow: "inset 0 0 0 1px rgba(172, 173, 173, 0.25)",
+      }}
     >
-      {/* Description (replaces the embedded sign-name image) */}
       <div>
-        <h4 className="font-display text-base sm:text-lg leading-tight text-foreground">
+        <h4
+          className="font-headline text-2xl md:text-3xl leading-tight"
+          style={{ color: "#00693e" }}
+        >
           {combinedName}
         </h4>
         {proverb && (
-          <p className="text-xs sm:text-sm italic text-foreground/70 mt-1.5 leading-relaxed">
+          <blockquote
+            className="italic text-sm md:text-base mt-3 leading-relaxed pl-4"
+            style={{
+              borderLeft: "3px solid #fbd115",
+              color: "rgba(45, 47, 47, 0.85)",
+            }}
+          >
             « {proverb} »
-          </p>
+          </blockquote>
         )}
-        <p className="mt-3 text-sm leading-relaxed text-foreground/80">
+        <p
+          className="mt-4 text-sm md:text-base leading-relaxed"
+          style={{ color: "rgba(45, 47, 47, 0.9)" }}
+        >
           {essence}
         </p>
         {isMother && (
-          <div className="mt-3">
+          <div className="mt-4">
             <span
-              className="inline-block text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded-full font-medium"
+              className="inline-block font-label text-[10px] uppercase tracking-[0.2em] font-bold px-2 py-0.5 rounded-full"
               style={{
-                background: "hsl(var(--benin-yellow) / 0.15)",
-                color: "hsl(var(--benin-yellow) / 0.9)",
-                border: "1px solid hsl(var(--benin-yellow) / 0.3)",
+                background: "rgba(251, 209, 21, 0.18)",
+                color: "#a07d00",
+                border: "1px solid rgba(251, 209, 21, 0.4)",
               }}
             >
               Signe mère
@@ -85,14 +100,16 @@ const SignDisplay = ({
         )}
       </div>
 
-      {/* Detailed reading: vigilance + engagement only (essence already shown above) */}
       {!compact && (vigilance || engagement) && (
-        <div className="mt-4 pt-4 border-t border-border space-y-3">
+        <div
+          className="mt-5 pt-5 space-y-4"
+          style={{ borderTop: "1px solid rgba(172, 173, 173, 0.25)" }}
+        >
           {vigilance && (
-            <Block label="Vigilance" text={vigilance} dot="hsl(var(--benin-red))" />
+            <Block label="Vigilance" text={vigilance} dot="#e8112d" />
           )}
           {engagement && (
-            <Block label="Engagement" text={engagement} dot="hsl(var(--benin-yellow))" />
+            <Block label="Engagement" text={engagement} dot="#fbd115" />
           )}
         </div>
       )}
@@ -133,16 +150,18 @@ const Block = ({
   dot: string;
 }) => (
   <div>
-    <div className="flex items-center gap-1.5 mb-1">
+    <div className="flex items-center gap-2 mb-1.5">
+      <span className="w-2 h-2 rounded-full" style={{ background: dot }} />
       <span
-        className="w-1.5 h-1.5 rounded-full"
-        style={{ background: dot }}
-      />
-      <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-medium">
+        className="font-label text-[10px] uppercase tracking-[0.2em] font-bold"
+        style={{ color: "#5a5c5c" }}
+      >
         {label}
       </span>
     </div>
-    <p className="text-xs sm:text-sm leading-relaxed text-foreground/80">{text}</p>
+    <p className="text-sm leading-relaxed" style={{ color: "rgba(45, 47, 47, 0.85)" }}>
+      {text}
+    </p>
   </div>
 );
 

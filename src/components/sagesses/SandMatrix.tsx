@@ -154,54 +154,61 @@ const SandMatrix = () => {
           </motion.div>
         )}
 
-        {/* PHASE 3 — Revealed sign */}
+        {/* PHASE 3 — Revealed sign (Living Editorial design) */}
         {phase === "revealed" && revealed && lifeCase && (
           <motion.div
             key={`revealed-${revealed.row}-${revealed.col}`}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative p-6 md:p-8 rounded-2xl border bg-[hsl(0,0%,100%)]"
-            style={{ borderColor: "hsl(145, 55%, 38%)" }}
+            exit={{ opacity: 0, scale: 0.97 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="relative font-body rounded-xl overflow-hidden bg-[#ffffff] p-6 md:p-10 lg:p-14"
+            style={{
+              boxShadow: "0 20px 60px rgba(45, 47, 47, 0.08)",
+              color: "#2d2f2f",
+            }}
           >
+            {/* Close — orange accent */}
             <button
               onClick={requestCloseRevealed}
               aria-label="Fermer"
-              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
               style={{
-                background: "hsl(40, 20%, 96%)",
-                color: "hsl(25, 95%, 55%)",
-                border: "1px solid hsl(25, 95%, 55% / 0.3)",
+                background: "#f0f1f1",
+                color: "#e87a1d",
+                border: "1px solid rgba(232, 122, 29, 0.25)",
               }}
             >
               <X size={18} />
             </button>
 
-            {/* Collapsible case reminder at top */}
-            <div className="mb-6 mr-12">
+            {/* Collapsible case reminder */}
+            <div className="mb-8 mr-14">
               <button
                 onClick={() => setCaseOpen((v) => !v)}
-                className="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl transition-all hover:opacity-90"
-                style={{ background: "hsl(40, 20%, 96%)" }}
+                className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl transition-all hover:opacity-90"
+                style={{ background: "#f0f1f1" }}
                 aria-expanded={caseOpen}
               >
-                <span className="flex items-center gap-2 text-left">
+                <span className="flex items-center gap-3 text-left">
                   <span className="text-base">{lifeCase.emoji}</span>
                   <span
-                    className="text-[10px] uppercase tracking-widest font-semibold"
-                    style={{ color: "hsl(145, 55%, 38%)" }}
+                    className="font-label text-[10px] uppercase tracking-[0.2em] font-bold"
+                    style={{ color: "#5a5c5c" }}
                   >
                     Rappel du cas
                   </span>
-                  <span className="text-xs font-display truncate" style={{ color: "hsl(45, 95%, 45%)" }}>
+                  <span
+                    className="font-headline italic text-sm truncate"
+                    style={{ color: "#fbd115" }}
+                  >
                     — {lifeCase.label}
                   </span>
                 </span>
                 {caseOpen ? (
-                  <ChevronUp size={16} style={{ color: "hsl(30, 8%, 45%)" }} />
+                  <ChevronUp size={16} style={{ color: "#5a5c5c" }} />
                 ) : (
-                  <ChevronDown size={16} style={{ color: "hsl(30, 8%, 45%)" }} />
+                  <ChevronDown size={16} style={{ color: "#5a5c5c" }} />
                 )}
               </button>
               <AnimatePresence initial={false}>
@@ -213,72 +220,96 @@ const SandMatrix = () => {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pt-3 pb-1">
-                      <p className="text-sm font-display mb-2" style={{ color: "hsl(45, 95%, 45%)" }}>
+                    <div className="px-5 pt-4 pb-2">
+                      <p
+                        className="font-headline text-base md:text-lg leading-snug mb-3"
+                        style={{ color: "#00693e" }}
+                      >
                         {lifeCase.situation}
                       </p>
-                      <p className="text-xs leading-relaxed mb-1.5" style={{ color: "hsl(30, 8%, 30%)" }}>
-                        {lifeCase.narrative[0]}
+                      <blockquote
+                        className="italic text-sm leading-relaxed pl-4 mb-3"
+                        style={{
+                          borderLeft: "3px solid #fbd115",
+                          color: "rgba(45, 47, 47, 0.85)",
+                        }}
+                      >
+                        {lifeCase.narrative[0]} {lifeCase.narrative[1]}
+                      </blockquote>
+                      <p
+                        className="font-label text-[10px] uppercase tracking-[0.2em] font-bold mb-2"
+                        style={{ color: "#5a5c5c" }}
+                      >
+                        Les 4 propositions — ton intuition initiale
                       </p>
-                      <p className="text-xs leading-relaxed mb-2" style={{ color: "hsl(30, 8%, 30%)" }}>
-                        {lifeCase.narrative[1]}
-                      </p>
-                      <div className="mt-3 mb-2">
-                        <p
-                          className="text-[10px] uppercase tracking-widest font-semibold mb-1.5"
-                          style={{ color: "hsl(145, 55%, 38%)" }}
-                        >
-                          Les 4 propositions et ton intuition initiale
-                        </p>
-                        <ul className="space-y-1">
-                          {lifeCase.options.map((opt, i) => {
-                            const isPicked = intuitiveChoice === i;
-                            return (
-                              <li
-                                key={i}
-                                className="text-xs leading-relaxed flex gap-2"
-                                style={{
-                                  color: isPicked ? "hsl(145, 55%, 38%)" : "hsl(30, 8%, 35%)",
-                                  fontWeight: isPicked ? 700 : 400,
-                                }}
+                      <ul className="space-y-1.5">
+                        {lifeCase.options.map((opt, i) => {
+                          const isPicked = intuitiveChoice === i;
+                          return (
+                            <li
+                              key={i}
+                              className="text-sm leading-relaxed flex gap-2"
+                              style={{
+                                color: isPicked ? "#00693e" : "#2d2f2f",
+                                fontWeight: isPicked ? 600 : 400,
+                              }}
+                            >
+                              <span
+                                className="font-bold"
+                                style={{ color: "#fbd115" }}
                               >
-                                <span style={{ color: "hsl(45, 95%, 45%)" }}>
-                                  {String.fromCharCode(65 + i)}.
-                                </span>
-                                <span>{opt}</span>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
+                                {String.fromCharCode(65 + i)}.
+                              </span>
+                              <span>{opt}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
+            {/* Domain label + Benin flag dots */}
+            <div className="flex items-center justify-between mb-4">
+              <span
+                className="font-label text-xs tracking-[0.2em] uppercase font-bold"
+                style={{ color: "#5a5c5c" }}
+              >
+                Signe révélé
+              </span>
+              <div className="flex gap-2">
+                <span className="w-3 h-3 rounded-full shadow-sm" style={{ background: "#008751" }} />
+                <span className="w-3 h-3 rounded-full shadow-sm" style={{ background: "#fcd116" }} />
+                <span className="w-3 h-3 rounded-full shadow-sm" style={{ background: "#e8112d" }} />
+              </div>
+            </div>
+
+            {/* Editorial title */}
             <motion.h3
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
-              className="font-display text-3xl md:text-4xl text-center mb-8"
-              style={{ color: "hsl(30, 8%, 12%)" }}
+              className="font-headline text-4xl md:text-5xl lg:text-6xl text-center leading-tight mb-10"
+              style={{ color: "#00693e" }}
             >
               {revealed.signX.name} {revealed.signY.name}
             </motion.h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.25, duration: 0.5 }}
-                className="flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center rounded-xl p-8"
+                style={{ background: "#f0f1f1" }}
               >
                 <DotIdeogram
                   leftCode={revealed.signX.code}
                   rightCode={revealed.signY.code}
                   size={220}
-                  color="hsl(30, 30%, 12%)"
+                  color="#2d2f2f"
                 />
               </motion.div>
 
@@ -297,33 +328,31 @@ const SandMatrix = () => {
               </motion.div>
             </div>
 
-            {/* Values formula */}
+            {/* Values formula — editorial */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.55 }}
-              className="my-8 flex items-center gap-4"
+              className="my-10 flex items-center gap-4"
             >
-              <div className="flex-1 h-px" style={{ background: "hsl(145, 55%, 38% / 0.25)" }} />
+              <div className="flex-1 h-px" style={{ background: "rgba(0, 105, 62, 0.2)" }} />
               <div className="text-center px-3">
                 <p
-                  className="text-[10px] uppercase tracking-widest mb-1.5 font-semibold"
-                  style={{ color: "hsl(30, 8%, 45%)" }}
+                  className="font-label text-[10px] uppercase tracking-[0.2em] mb-2 font-bold"
+                  style={{ color: "#5a5c5c" }}
                 >
                   Résonances à explorer
                 </p>
-                <p className="font-display text-base md:text-lg flex items-center justify-center gap-2 flex-wrap">
-                  <span style={{ color: "hsl(145, 55%, 38%)" }}>{revealed.axisYWord}</span>
-                  <span style={{ color: "hsl(30, 8%, 45%)" }}>×</span>
-                  <span style={{ color: "hsl(45, 95%, 45%)" }}>{revealed.axisXWord}</span>
-                  <span style={{ color: "hsl(30, 8%, 45%)" }}>=</span>
-                  <span style={{ color: "hsl(358, 75%, 52%)" }}>{revealed.dynamicWord}</span>
+                <p className="font-headline text-lg md:text-xl flex items-center justify-center gap-3 flex-wrap">
+                  <span style={{ color: "#00693e" }}>{revealed.axisYWord}</span>
+                  <span style={{ color: "#5a5c5c" }}>×</span>
+                  <span style={{ color: "#fbd115" }}>{revealed.axisXWord}</span>
+                  <span style={{ color: "#5a5c5c" }}>=</span>
+                  <span style={{ color: "#e8112d" }}>{revealed.dynamicWord}</span>
                 </p>
               </div>
-              <div className="flex-1 h-px" style={{ background: "hsl(145, 55%, 38% / 0.25)" }} />
+              <div className="flex-1 h-px" style={{ background: "rgba(0, 105, 62, 0.2)" }} />
             </motion.div>
-
-            {/* (Case reminder moved to top of panel) */}
 
             {/* Final choice + Audio interpretation — 2 columns */}
             <motion.div
@@ -332,21 +361,24 @@ const SandMatrix = () => {
               transition={{ delay: 0.75 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-5"
             >
-              {/* LEFT — Final choice among the 4 options */}
+              {/* LEFT — Final choice */}
               <div
-                className="rounded-2xl border p-5"
-                style={{ borderColor: "hsl(145, 55%, 38%)", background: "hsl(0, 0%, 100%)" }}
+                className="rounded-xl p-6"
+                style={{
+                  background: "#ffffff",
+                  boxShadow: "inset 0 0 0 1px rgba(0, 105, 62, 0.35)",
+                }}
               >
                 <p
-                  className="text-xs uppercase tracking-widest font-semibold"
-                  style={{ color: "hsl(145, 55%, 38%)" }}
+                  className="font-label text-xs uppercase tracking-[0.2em] font-bold"
+                  style={{ color: "#00693e" }}
                 >
                   Ton choix définitif
                 </p>
-                <p className="text-xs mt-0.5 mb-3" style={{ color: "hsl(30, 8%, 45%)" }}>
+                <p className="text-sm mt-1 mb-4" style={{ color: "#5a5c5c" }}>
                   À la lumière de ce signe, quelle voie choisis-tu ?
                 </p>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2.5">
                   {lifeCase.options.map((opt, i) => {
                     const isFinal = finalChoice === i;
                     const wasIntuition = intuitiveChoice === i;
@@ -354,26 +386,26 @@ const SandMatrix = () => {
                       <button
                         key={i}
                         onClick={() => setFinalChoice(i)}
-                        className="text-left px-3 py-2 rounded-xl text-xs font-medium transition-all border-2 flex gap-2 items-start"
+                        className="text-left p-3 rounded-xl text-sm transition-all flex gap-2 items-start"
                         style={{
-                          borderColor: isFinal
-                            ? "hsl(145, 55%, 38%)"
-                            : "hsl(145, 55%, 38% / 0.25)",
-                          background: isFinal ? "hsl(145, 55%, 38% / 0.12)" : "hsl(0, 0%, 100%)",
-                          color: isFinal ? "hsl(145, 55%, 38%)" : "hsl(30, 8%, 35%)",
-                          fontWeight: isFinal ? 700 : 400,
+                          background: isFinal ? "#ffffff" : "#f0f1f1",
+                          boxShadow: isFinal
+                            ? "inset 0 0 0 2px #00693e"
+                            : "inset 0 0 0 1px rgba(172,173,173,0.15)",
+                          color: isFinal ? "#00693e" : "#2d2f2f",
+                          fontWeight: isFinal ? 600 : 400,
                         }}
                       >
-                        <span style={{ color: "hsl(45, 95%, 45%)", fontWeight: 700 }}>
+                        <span className="font-bold" style={{ color: "#fbd115" }}>
                           {String.fromCharCode(65 + i)}.
                         </span>
-                        <span className="flex-1">{opt}</span>
+                        <span className="flex-1 leading-snug">{opt}</span>
                         {wasIntuition && (
                           <span
-                            className="text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded"
+                            className="font-label text-[9px] uppercase tracking-[0.15em] font-bold px-1.5 py-0.5 rounded"
                             style={{
-                              background: "hsl(45, 95%, 45% / 0.15)",
-                              color: "hsl(45, 95%, 45%)",
+                              background: "rgba(251, 209, 21, 0.18)",
+                              color: "#a07d00",
                             }}
                           >
                             intuition
@@ -390,23 +422,23 @@ const SandMatrix = () => {
             </motion.div>
 
             {/* Restart + Transmit */}
-            <div className="mt-8 flex justify-center gap-3 flex-wrap">
+            <div className="mt-10 flex justify-center gap-4 flex-wrap">
               <button
                 onClick={restart}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-105"
+                className="flex items-center gap-2 px-6 py-3 rounded-md font-bold text-xs uppercase tracking-[0.15em] transition-all hover:scale-[1.03] active:scale-[0.98]"
                 style={{
-                  background: "hsl(40, 20%, 92%)",
-                  color: "hsl(30, 8%, 12%)",
+                  background: "#f0f1f1",
+                  color: "#2d2f2f",
                 }}
               >
                 <RotateCcw size={14} /> Nouveau cas
               </button>
               <button
                 onClick={() => {}}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-105"
+                className="px-8 py-3 rounded-md font-bold text-xs uppercase tracking-[0.15em] text-white transition-all hover:scale-[1.03] active:scale-[0.98]"
                 style={{
-                  background: "hsl(145, 55%, 38%)",
-                  color: "hsl(0, 0%, 100%)",
+                  background: "linear-gradient(90deg, #00693e 0%, #005c36 100%)",
+                  boxShadow: "0 12px 30px rgba(0, 105, 62, 0.25)",
                 }}
               >
                 Transmettre ma sagesse
