@@ -53,11 +53,6 @@ function Index() {
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl mb-4 text-foreground">
               Sagesses du Bénin
             </h1>
-            {tab === "mur" && (
-              <p className="text-sm md:text-base max-w-xl mx-auto leading-relaxed text-muted-foreground">
-                {SUBTITLES[tab]}
-              </p>
-            )}
           </div>
 
           {/* Tabs */}

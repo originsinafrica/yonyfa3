@@ -121,20 +121,7 @@ const SandMatrix = () => {
             exit={{ opacity: 0, scale: 0.97 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="text-center mb-6">
-              <p
-                className="text-xs uppercase tracking-widest font-semibold mb-2"
-                style={{ color: "hsl(145, 55%, 38%)" }}
-              >
-                {lifeCase.emoji} {lifeCase.label}
-              </p>
-              <p
-                className="font-display text-lg md:text-xl"
-                style={{ color: "hsl(45, 95%, 45%)" }}
-              >
-                Choisis une case — laisse ta main être guidée.
-              </p>
-            </div>
+            <div className="text-center mb-6" />
             <div className="overflow-x-auto">
               <div
                 className="grid gap-[2px] min-w-[400px]"
